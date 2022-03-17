@@ -37,8 +37,8 @@ lmain.pack(fill='x', expand=False)
 
 cameraNo = 0
 cap = cv.VideoCapture(int(cameraNo),cv.CAP_DSHOW)
-cap.set(cv.CAP_PROP_FRAME_WIDTH, 800)
-cap.set(cv.CAP_PROP_FRAME_HEIGHT, 800)
+cap.set(cv.CAP_PROP_FRAME_WIDTH, 1600)
+cap.set(cv.CAP_PROP_FRAME_HEIGHT, 1600)
 
 #Camera frame
 def show_frame():
