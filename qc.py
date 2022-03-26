@@ -307,7 +307,7 @@ if (checkval == "OK"):
             output_i = 'C:\subImages\\subImage1\\'+str(i)+'.jpg'    #subImg1
             output_ii = 'C:\subImages\\subImage2\\'+str(i)+'.jpg'   #subImg2
             pomIndex_i = 0  #x,y offset indexes
-            result_i = [] #pom measure output list storagepppppg
+            result_i = [] #pom measure output list storage
             img_i = cv.imread(imageToInspect,0) #image inspection read
             img2_i = img_i.copy()
             templ_i = cv.imread(output_i,0)     #subImg1 read
