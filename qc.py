@@ -1,5 +1,5 @@
 
-from calendar import Calendar
+from calendar import Calendar   
 from cgitb import text
 from collections import UserDict
 from datetime import datetime
@@ -38,17 +38,19 @@ scope = ["https://spreadsheets.google.com/feeds",
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
 client = gspread.authorize(creds)
 sheet = client.open_by_key("11Fc1o0U_mFUx0iNNcYQLdAt-w8d9-TUrAo9G1Ay79PA")  
-accts = sheet.worksheet("MEASURER")
-rd = sheet.worksheet("RAWDATA")
-qc_ctrl = sheet.worksheet("qc_ctrl")
-print('Enter QC Line Number: ')
-x = input()
-print(x)
-cell= qc_ctrl.find(x)
-val = cell.row
-checkval = qc_ctrl.cell(val,2).value
-print(checkval)
+accts = sheet.worksheet("MEASURER") #measurer list from google sheets with id and password records
+rd = sheet.worksheet("RAWDATA") # RAWDATA sheets from google
+qc_ctrl = sheet.worksheet("qc_ctrl")    #i/o per qc lines as settings and post/get value
+print('Enter QC Line Number: ') #message to enter qc line number
+x = input() #get input value
+print(x) #value print
+cell= qc_ctrl.find(x) #checking value on qc_ctrl sheets column 1
+val = cell.row #getting row value from where it is in column 1 qc_ctrl
+checkval = qc_ctrl.cell(val,2).value    #check value if its ok (OK= mmeans Available)
+print(checkval) #printing OK val
 
+# if else checking if available then convert to renamed sheet depending
+#   in number value.
 if (checkval == "OK"):
     print("Line available. Please wait....")
     x = x.replace("qc","")
@@ -58,6 +60,8 @@ if (checkval == "OK"):
     records = sheet.worksheet("AUTOMEASURE")
     qc = sheet.worksheet("qc"+str(x)+"")
 
+    # creates a main form then enabling/disabling gui functions 
+    # depending on user actions
     def qc_main():
         global main_screen
         main_screen = Tk()
@@ -76,10 +80,10 @@ if (checkval == "OK"):
         resultTable_frame.destroy()
         main_screen.mainloop()
 
+    # login authentication
     def login_verify():
         global user
         username1 = UserID.get()
-
         password1 = Pass.get()
         # UserID_k.delete(0, END)
         # Pass_k.delete(0, END)
@@ -98,7 +102,7 @@ if (checkval == "OK"):
         else:
             user_not_found()
 
-
+    #login gui frame
     def account_login():
         global login_frame
         login_frame = Frame(main_screen,bg="#B9CBE5")
@@ -115,6 +119,7 @@ if (checkval == "OK"):
         Pass_k = Entry(login_frame,textvariable=Pass,bg="#B9CBE5",show="*").pack(side=LEFT, anchor=S,padx=10,pady=10)
         Button(login_frame, text="Login", width=50, height=5, command = login_verify).pack(side=LEFT, anchor=S, padx=10,pady=10) 
 
+    #success login auth
     def login_sucess():
         global login_success_screen
         login_success_screen = Toplevel(main_screen)
@@ -122,7 +127,8 @@ if (checkval == "OK"):
         login_success_screen.geometry("150x100")
         Label(login_success_screen, text="Login Success").pack()
         Button(login_success_screen, text="OK", command=continueTo).pack()
-        
+
+    #success login enabling gui functions and disabling login gui    
     def continueTo():
         login_success_screen.destroy()
         for child in info_frame.winfo_children():
@@ -141,6 +147,7 @@ if (checkval == "OK"):
         quick_resultTable()
         showImg()
 
+    #logout gui function
     def logout():
         for child in info_frame.winfo_children():
 
@@ -155,7 +162,7 @@ if (checkval == "OK"):
         Pass_k.delete(0,'end')
         imgRes_frame.destroy()
         
-
+    # qcline info gui
     def qc_info():
         global info_frame
         info_frame = Frame(main_screen,bg="#B9CBE5")
@@ -164,7 +171,8 @@ if (checkval == "OK"):
         Label(info_frame,text="QC Name: "+qc_ctrl.acell("P"+str(x)+"").value,bg="#B9CBE5").pack(side=LEFT, anchor=S,padx=10,pady=10)
         Label(info_frame,text="Date : "+datetime.now().strftime("%A %d %B %Y"),bg="#B9CBE5").pack(side=LEFT, anchor=S,padx=10,pady=10)
         Button(info_frame, text="Logout", width=50, height=5, command = logout).pack(side=LEFT, anchor=S, padx=10,pady=10)
-
+    
+    #qc gui entry fields to google sheet
     def measure_info():
         global measureInfo_frame
         
@@ -213,7 +221,7 @@ if (checkval == "OK"):
         poNoFrow = poNosh.find(getPONOs)
         OptionMenu (measureInfo_frame,PO,*poNosh.row_values(poNoFrow.row)[1:],command = PO.trace_add('write',lambda *args: qc_ctrl.update_acell("T"+str(x)+"",PO.get()))).pack(side=LEFT, anchor=NW,pady=10)
 
-
+    #show table from qc(ex.9) sheet
     def quick_resultTable():
         
         global resultTable_frame
@@ -227,19 +235,20 @@ if (checkval == "OK"):
         pt.show()
         print("Ready")
 
+    #camera settings
     def camera_info():
-        
         global cap
         cap = cv.VideoCapture(0,cv.CAP_DSHOW)
         cap.set(cv.CAP_PROP_FRAME_WIDTH, 1600)
         cap.set(cv.CAP_PROP_FRAME_HEIGHT, 1600)
 
+    #output imageframe
     def showImg():
         global imgRes_frame
         imgRes_frame = Canvas(main_screen,bg="#B9CBE5")
         imgRes_frame.place(x=1250,y=150,width=1200,height=800)
         
-
+    #load output front image garment to imageframe
     def loadFrontImg():
         imgViewres = qc_reclist[3]+qc_reclist[5]+"Front"+qc_reclist[13]+qc_reclist[15]+qc_reclist[17]+qc_reclist[19]
         imgViewres = imgViewres.replace("-","").replace(" ","").replace("/","").replace(".","").upper()
@@ -251,6 +260,7 @@ if (checkval == "OK"):
         img.image = render
         img.place(x=0,y=0)
 
+    #load output back image garment to imageframe
     def loadBackImg():
         imgViewres2 = qc_reclist[3]+qc_reclist[5]+"Back"+qc_reclist[13]+qc_reclist[15]+qc_reclist[17]+qc_reclist[19]
         imgViewres2 = imgViewres2.replace("-","").replace(" ","").replace("/","").replace(".","").upper()
@@ -262,7 +272,7 @@ if (checkval == "OK"):
         img2.image = render
         img2.place(x=0,y=400)
         
-        
+    #start measure button action
     def start_button():
         imgRes_frame.destroy()
         shutil.copyfile('1.jpg','1_.jpg')
@@ -446,12 +456,13 @@ if (checkval == "OK"):
         lastrecNum = qc_ctrl.acell("AD"+str(x)+"").value
         lastrecNum = int(lastrecNum)
 
-        #range results
+        #range results to qc_temp
         ab = np.array(qc_temp.get_all_values())
         records.update('A'+str(lastrecNum),ab.tolist())
         showtable()
         print('done')
 
+    #show google sheet qc and image to table frame and image framme
     def showtable():
         dfupdate = pd.DataFrame(qc.get_all_records())
         pt.model.df = dfupdate
@@ -461,6 +472,7 @@ if (checkval == "OK"):
         loadFrontImg()
         loadBackImg()
 
+    #password login auth success
     def password_not_recognised():
         global password_not_recog_screen
         password_not_recog_screen = Toplevel(main_screen)
@@ -469,7 +481,7 @@ if (checkval == "OK"):
         Label(password_not_recog_screen, text="Invalid Password ").pack()
         Button(password_not_recog_screen, text="OK", command=delete_password_not_recognised).pack()
 
-
+    ##password login auth not success
     def user_not_found():
         global user_not_found_screen
         user_not_found_screen = Toplevel(main_screen)
@@ -478,12 +490,14 @@ if (checkval == "OK"):
         Label(user_not_found_screen, text="User Not Found").pack()
         Button(user_not_found_screen, text="OK", command=delete_user_not_found_screen).pack()
 
+    #delete pass not success
     def delete_password_not_recognised():
         password_not_recog_screen.destroy()
-
+    #delete user not success
     def delete_user_not_found_screen():
         user_not_found_screen.destroy()
         
+    #run main gui
     qc_main()
 else:
     print("Line not available")

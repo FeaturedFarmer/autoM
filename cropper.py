@@ -1,4 +1,18 @@
-# importing the module
+#This is to crop subImages (This is a prototype only to get 
+# same sizes of subImages and PIXELS)
+
+# Step 1 is to select the template image or orginal image you want to
+#  get for subImage with the same area of Pixels
+
+# Step 2 is to copy the pomID text from google sheet where you want to name the subImage as pomID also.
+
+# Step 3 is to click where is the POM A
+
+# Step 4 is where to save the subImage after clicking the POM A
+
+# Step 5 to get POM B (Repeat step 3 to 4)
+
+
 from tkinter import Image
 import cv2
 import os

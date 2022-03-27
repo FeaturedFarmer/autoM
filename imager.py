@@ -1,3 +1,20 @@
+#This is to create orignal image from a sample style garment
+# and to support the subImages cropping with the same aspect of 
+# sizes and pixels ratio
+# (This is also prototype only.)
+
+# Step 1 (On comments = Camera Settings you can adjust the width and height
+# of the camera regarding on what table sizes and table to camera height
+# calibration based on the standard)
+
+# Step 2 (Click Save after running)
+
+# Step 3 Named it as what style name is the garment OR you can named it
+# if its FRONT or BACK
+
+# Step 4 (look for the cropper.py) after capturing the based template.
+
+
 import easygui
 import numpy as np
 import cv2 as cv
@@ -35,6 +52,7 @@ imageFrame.pack(fill='x', expand=False)
 lmain = tk.Label(imageFrame)
 lmain.pack(fill='x', expand=False) 
 
+#Camera settings
 cameraNo = 0
 cap = cv.VideoCapture(int(cameraNo),cv.CAP_DSHOW)
 cap.set(cv.CAP_PROP_FRAME_WIDTH, 1600)
