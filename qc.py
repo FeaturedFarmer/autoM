@@ -35,7 +35,8 @@ scope = ["https://spreadsheets.google.com/feeds",
 
 
 #CREDENTIALS FROM GOOGLE SERVICE ACCOUNT
-creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
+#creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)#sydney credentials
+creds = ServiceAccountCredentials.from_json_keyfile_name("automeasure-345506-6b89bf4f610e.json", scope)
 client = gspread.authorize(creds)
 sheet = client.open_by_key("11Fc1o0U_mFUx0iNNcYQLdAt-w8d9-TUrAo9G1Ay79PA")  
 accts = sheet.worksheet("MEASURER") #measurer list from google sheets with id and password records
