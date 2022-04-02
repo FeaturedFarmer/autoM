@@ -1,7 +1,5 @@
 import cv2 
 
-
-
 im = cv2.imread('base.jpg')
 im1 = cv2.imread('test.jpg')
 
