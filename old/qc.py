@@ -307,7 +307,6 @@ if (checkval == "OK"):
         styleFactory = []
 
         for i in pomIDs[1:]:
-        
             recID = i+qc_reclist[17]+qc_reclist[19]
             sampleNum = qc_reclist[17]
             measurer= qc_reclist[15]
