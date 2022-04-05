@@ -9,4 +9,4 @@ contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIM
 
 
 cv2.drawContours(im1, contours, -1, (0,255,0), 1)
-cv2.imwrite("result.jpg", im1)
+cv2.imwrite("resulty.jpg", im1)
