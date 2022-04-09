@@ -33,7 +33,7 @@ scope = ["https://spreadsheets.google.com/feeds",
         "https://www.googleapis.com/auth/drive.file",
         "https://www.googleapis.com/auth/drive"]
 
-#CREDENTIALS FROM GOOGLE SERVICE ACCOUNT
+#CREDENTIALS FROM GOOGLE SERVICE ACCOUNTfdrtfdrty 
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
 client = gspread.authorize(creds)
 sheet = client.open_by_key("11Fc1o0U_mFUx0iNNcYQLdAt-w8d9-TUrAo9G1Ay79PA") 
