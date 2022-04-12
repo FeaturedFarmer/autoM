@@ -2,6 +2,7 @@
 from calendar import Calendar   
 from cgitb import text
 from collections import UserDict
+from ctypes import pointer
 from datetime import datetime
 from http.client import FORBIDDEN
 from tkinter import *
@@ -262,16 +263,16 @@ if (checkval == "OK"):
         img.place(x=0,y=0)
 
     #load output back image garment to imageframe
-    def loadBackImg():
-        imgViewres2 = qc_reclist[3]+qc_reclist[5]+"Back"+qc_reclist[13]+qc_reclist[15]+qc_reclist[17]+qc_reclist[19]
-        imgViewres2 = imgViewres2.replace("-","").replace(" ","").replace("/","").replace(".","").upper()
-        load2 = Image.open("C:\Result\\"+imgViewres2+".jpg")
-        resized2 = load2.resize((600,400),Image.ANTIALIAS)
-        render = ImageTk.PhotoImage(resized2)
-        global img2
-        img2 = Label(imgRes_frame,image=render)
-        img2.image = render
-        img2.place(x=0,y=400)
+    # def loadBackImg():
+    #     imgViewres2 = qc_reclist[3]+qc_reclist[5]+"Back"+qc_reclist[13]+qc_reclist[15]+qc_reclist[17]+qc_reclist[19]
+    #     imgViewres2 = imgViewres2.replace("-","").replace(" ","").replace("/","").replace(".","").upper()
+    #     load2 = Image.open("C:\Result\\"+imgViewres2+".jpg")
+    #     resized2 = load2.resize((600,400),Image.ANTIALIAS)
+    #     render = ImageTk.PhotoImage(resized2)
+    #     global img2
+    #     img2 = Label(imgRes_frame,image=render)
+    #     img2.image = render
+    #     img2.place(x=0,y=400)
         
     #start measure button action
     def start_button():
@@ -360,7 +361,7 @@ if (checkval == "OK"):
             print(subImgpom_ii)
 
             #result calculation from distances of 2 subImages according from height of camera
-            result_i.append((math.sqrt((x2 - x1)**2 + (y2 - y1)**2))/float(pxlToInchVal))
+            result_i.append((math.sqrt((x2 - x1)**2 + (y2 - y1)**2))/float(pxlToInchVal)/2)
             print(str(i)+":",round(result_i[pomIndex_i],2),"inches") # print results every pom
             #push to temp sTORAGE
             
@@ -382,7 +383,7 @@ if (checkval == "OK"):
             cv.putText(imgout2, str(round(result_i[pomIndex_i],2)), (np.add(subImgpom_ii,[0,0])), cv.FONT_HERSHEY_SIMPLEX, 1, (51, 255, 255), 1)
             cv.imwrite('C:\Output\\'+str(recID_repl)+'.jpg', imgout)#rgb(0,128,0)   #rgb(34,139,34)
             cv.imwrite('1_.jpg', imgout2)#rgb(0,128,0)   #rgb(34,139,34)
-            # cv.imshow('ImgOutput',imgout)
+            #cv.imshow('ImgOutput',imgout)
             cv.waitKey(1)
 
         # cv.destroyWindow('ImgOutput')
@@ -391,7 +392,7 @@ if (checkval == "OK"):
         resname = qc_reclist[3]+qc_reclist[5]+qc_reclist[7]+qc_reclist[13]+qc_reclist[15]+qc_reclist[17]+qc_reclist[19]
         resname = resname.replace("-","").replace(" ","").replace("/","").replace(".","").upper()
         cv.imwrite('C:\Result\\'+resname+'.jpg',getResultImg)
-        os.remove("1_.jpg")
+        #os.remove("1_.jpg")
 
         #Clear temp result
         sheet.values_clear("qc"+str(x)+"_be!E2:E31")
@@ -470,7 +471,7 @@ if (checkval == "OK"):
         pt.redraw()
         showImg()
         loadFrontImg()
-        loadBackImg()
+        #loadBackImg()
 
     #password login auth success
     def password_not_recognised():
