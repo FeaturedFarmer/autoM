@@ -27,6 +27,7 @@ import sys
 import gspread
 from oauth2client.client import Error
 from oauth2client.service_account import ServiceAccountCredentials
+from tkinter import Button, Frame, Tk
 
 scope = ["https://spreadsheets.google.com/feeds",
         'https://www.googleapis.com/auth/spreadsheets',
@@ -55,8 +56,8 @@ lmain.pack(fill='x', expand=False)
 #Camera settings
 cameraNo = 0
 cap = cv.VideoCapture(int(cameraNo),cv.CAP_DSHOW)
-cap.set(cv.CAP_PROP_FRAME_WIDTH, 1600)
-cap.set(cv.CAP_PROP_FRAME_HEIGHT, 1600)
+cap.set(cv.CAP_PROP_FRAME_WIDTH,3840)#1600
+cap.set(cv.CAP_PROP_FRAME_HEIGHT,2160)#1600
 
 #Camera frame
 def show_frame():
@@ -79,17 +80,19 @@ def proceed_clicked():
     cv2image = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
     prevImg = Image.fromarray(cv2image)
     ImageTk.PhotoImage(image=prevImg)
+    print('Resolution: ' + str(frame.shape[0]) + ' x ' + str(frame.shape[1]))
     filepath = easygui.filesavebox(title='Filename = Stylename', default='C:\\Templates\\', filetypes=None)
     #save captured frame as image
     print ("Output file to: " + filepath)
     prevImg.save(filepath+'.jpg')
-
+    
     """ callback when the button clicked
     """
 
 # save button
 proceed_button = ttk.Button(window, text="SAVE", command=proceed_clicked)
 proceed_button.pack(fill='x', expand=False)
+window.bind('f', lambda event: proceed_clicked())#*****************press ENTER to CAPTURE#
 
 show_frame()  #Display 2
 window.mainloop()  #Starts GUI

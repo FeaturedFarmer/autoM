@@ -87,7 +87,7 @@ if (checkval == "OK"):
         global user
         username1 = UserID.get()
         password1 = Pass.get()
-        # UserID_k.delete(0, END)
+        # UserID_k.delete(0, END) 
         # Pass_k.delete(0, END)
     
         usr = accts.col_values(4)[1:]
@@ -241,8 +241,8 @@ if (checkval == "OK"):
     def camera_info():
         global cap
         cap = cv.VideoCapture(0,cv.CAP_DSHOW)
-        cap.set(cv.CAP_PROP_FRAME_WIDTH, 1600)
-        cap.set(cv.CAP_PROP_FRAME_HEIGHT, 1600)
+        cap.set(cv.CAP_PROP_FRAME_WIDTH,3840)#1600
+        cap.set(cv.CAP_PROP_FRAME_HEIGHT,2160)#1600
 
     #output imageframe
     def showImg():
@@ -379,8 +379,8 @@ if (checkval == "OK"):
             imgout2 = cv.imread(imageToInspect2)
             cv.line(imgout,subImgpom_i, subImgpom_ii, (253, 249, 21), 2)
             cv.line(imgout2,subImgpom_i, subImgpom_ii, (253, 249, 21), 1)      
-            cv.putText(imgout, str(round(result_i[pomIndex_i],2)), (np.add(subImgpom_ii,[0,0])), cv.FONT_HERSHEY_SIMPLEX, 1.5, (51, 255, 255), 2)
-            cv.putText(imgout2, str(round(result_i[pomIndex_i],2)), (np.add(subImgpom_ii,[0,0])), cv.FONT_HERSHEY_SIMPLEX, 1, (51, 255, 255), 1)
+            cv.putText(imgout, str(round(result_i[pomIndex_i],2)), (np.add(subImgpom_ii,[0,0])), cv.FONT_HERSHEY_SIMPLEX, 1.5, (0, 0, 0), 2)
+            cv.putText(imgout2, str(round(result_i[pomIndex_i],2)), (np.add(subImgpom_ii,[0,0])), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 1)
             cv.imwrite('C:\Output\\'+str(recID_repl)+'.jpg', imgout)#rgb(0,128,0)   #rgb(34,139,34)
             cv.imwrite('1_.jpg', imgout2)#rgb(0,128,0)   #rgb(34,139,34)
             #cv.imshow('ImgOutput',imgout)
@@ -470,7 +470,7 @@ if (checkval == "OK"):
         # #pt.show()
         pt.redraw()
         showImg()
-        loadFrontImg()
+        loadFrontImg()#DEEPDIVE-REGGIE
         #loadBackImg()
 
     #password login auth success
