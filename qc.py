@@ -241,7 +241,7 @@ if (checkval == "OK"):
     def camera_info():
         global cap
         cap = cv.VideoCapture(0,cv.CAP_DSHOW)
-        cap.set(cv.CAP_PROP_FRAME_WIDTH,1600)#3840
+        cap.set(cv.CAP_PROP_FRAME_WIDTH,1600)#3840  # 4k resolution
         cap.set(cv.CAP_PROP_FRAME_HEIGHT,1600)#2160
 
     #output imageframe

@@ -54,7 +54,7 @@ def click_event(event, x, y, flags, params):
 		# on the image window
 		font = cv2.FONT_HERSHEY_SIMPLEX
 		b = img[y, x, 0]
-		g = img[y, x, 1]
+		g = img[y, x, 1]  
 		r = img[y, x, 2]
 		cv2.putText(img, str(b) + ',' +
 					str(g) + ',' + str(r),
