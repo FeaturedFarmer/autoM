@@ -20,7 +20,9 @@ upper2 = np.array([179,255,255])
 lower_mask = cv2.inRange(image, lower1, upper1)
 upper_mask = cv2.inRange(image, lower2, upper2)
 
+#full_mask = cv2.cvtColor(lower_mask + upper_mask,cv2.COLOR_BGR2HSV)
 full_mask = lower_mask + upper_mask;
+
 
 result = cv2.bitwise_and(result, result, mask=full_mask)
 
