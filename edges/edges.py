@@ -13,7 +13,7 @@
 import cv2
 
 # load image file
-image = cv2.imread('C:/Users/administrator/Documents/open-cv-tutorials/src/edges/image.jpeg', cv2.IMREAD_UNCHANGED)
+image = cv2.imread('C:/Users/administrator/Desktop/DX_Projects_onGit/autoM/autoM/edges/PATTERN1.jpg', cv2.IMREAD_UNCHANGED)
 
 # convert image to grayscale
 image_grayscale = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -35,8 +35,8 @@ image_edges = cv2.adaptiveThreshold(
 image_cartoon = cv2.bitwise_and(image_grayscale, image_edges)
 
 # write output images
-cv2.imwrite('C:/Users/administrator/Documents/open-cv-tutorials/src/edges/image_edges.png', image_edges)         # bare edges
-cv2.imwrite('C:/Users/administrator/Documents/open-cv-tutorials/src/edges/image_cartoon.png', image_cartoon)       # cartoon style
+cv2.imwrite('C:/Users/administrator/Desktop/DX_Projects_onGit/autoM/autoM/edges/image_edges.png', image_edges)         # bare edges
+cv2.imwrite('C:/Users/administrator/Desktop/DX_Projects_onGit/autoM/autoM/edges/image_cartoon.png', image_cartoon)       # cartoon style
 
 # display image in a window
 cv2.imshow('Image', image_cartoon)

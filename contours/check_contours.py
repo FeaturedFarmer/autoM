@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 # open source image file
-image = cv2.imread('C:/Users/administrator/Documents/open-cv-tutorials/src/contours/PATTERN1.png', cv2.IMREAD_UNCHANGED)
+image = cv2.imread('C:/Users/administrator/Desktop/DX_Projects_onGit/autoM/autoM/contours/PATTERN1.png', cv2.IMREAD_UNCHANGED)
 
 # convert image to grayscale
 image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)

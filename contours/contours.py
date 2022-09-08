@@ -1,20 +1,11 @@
-####################################
-#
-#    Find contours of an image
-#       and mask backgroung
-#
-#                by
-#
-#         Code Monkey King
-#
-####################################
+
 
 # packages
 import cv2
 import numpy as np
 
 # open source image file
-image = cv2.imread('C:/Users/administrator/Documents/open-cv-tutorials/src/contours/PATTERN1.jpg', cv2.IMREAD_UNCHANGED)
+image = cv2.imread('C:/Users/administrator/Desktop/DX_Projects_onGit/autoM/autoM/contours/PATTERN1.jpg', cv2.IMREAD_UNCHANGED)
 
 # convert image to grayscale
 image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -56,14 +47,14 @@ for contour in range(len(contours_mask)):
 
     # create background
     if contour != 1:
-        cv2.fillConvexPoly(new_background, contours_mask[contour], (0, 255, 0))
+        cv2.fillConvexPoly(new_background, contours_mask[contour], (0, 0, 0))
 
 # display the image in a window
-cv2.imshow('Original', image)
+# cv2.imshow('Original', image)
 cv2.imshow('Contours', canvas)
-cv2.imshow('Background mask', mask)
-cv2.imshow('New background', new_background)
-cv2.imshow('Output', cv2.bitwise_and(image, new_background))
+# cv2.imshow('Background mask', mask)
+cv2.imshow('Masked out pattern', new_background)
+# cv2.imshow('Output', cv2.bitwise_and(image, new_background))
 
 # write images
 cv2.imwrite('contours.png', canvas)
