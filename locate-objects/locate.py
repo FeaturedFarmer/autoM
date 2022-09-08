@@ -1,14 +1,3 @@
-##3##############################
-#
-#  Script to locate objects on
-#        on a screenshot
-#
-#               by
-#
-#        Code Monkey King
-#
-#################################
-
 # packages
 import cv2
 import numpy as np
@@ -18,10 +7,11 @@ import pyautogui as pg
 #screenshot = pg.screenshot('screenshot.png')
 
 # take a screenshot to locate objects on
-screenshot = pg.screenshot()
+screenshot = cv2.imread('C:/Users/administrator/Desktop/DX_Projects_onGit/autoM/autoM/contours/PATTERN1.jpg')
 
 # adjust colors
-screenshot = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
+#screenshot = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2GRAY)
+#cv2.imshow("  ",screenshot)
 
 # locate a single object in a screenshot
 #board = pg.locateOnScreen('board.png')
@@ -35,19 +25,23 @@ screenshot = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
 #    2
 #)
 
+# pawn_img = 'C:/Users/administrator/Desktop/DX_Projects_onGit/autoM/autoM/locate-objects/pawn.png'
+# pawn_imF = cv2.cvtColor(np.array(pawn_img), cv2.COLOR_RGB2BGR)
+
 # detect several objects on screenshot
-for pawn in pg.locateAllOnScreen('C:/Users/administrator/Documents/open-cv-tutorials/src/locate-objects/pawn.png', confidence=0.5):
+for pawn in pg.locateAllOnScreen('C:/Users/administrator/Desktop/DX_Projects_onGit/autoM/autoM/locate-objects/pawn.png', confidence = 0.3, grayscale = True):
     # draw rectangle around the object
     cv2.rectangle(
         screenshot,
         (pawn.left, pawn.top),
         (pawn.left + pawn.width, pawn.top + pawn.height),
-        (0, 0, 255),
-        2
+        (0, 255, 0),
+        1
     )
 
 # display screenshot in a window
-cv2.imshow('C:/Users/administrator/Documents/open-cv-tutorials/src/locate-objects/Screenshot', screenshot)
+
+cv2.imshow('shot', screenshot)
 
 # escape condition
 cv2.waitKey(0)

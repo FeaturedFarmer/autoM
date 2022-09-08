@@ -1,5 +1,3 @@
-
-
 # packages
 import cv2
 import numpy as np
@@ -32,7 +30,10 @@ contours_draw, hierachy = cv2.findContours(image_edges, cv2.RETR_TREE, cv2.CHAIN
 contours_mask, hierachy = cv2.findContours(image_edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
 # draw all contours
-#cv2.drawContours(canvas, contours_draw, 1, (0, 0, 0), 3)
+cv2.drawContours(canvas, contours_draw, 1, (0, 0, 0), 3)
+
+#debug
+cv2.imshow('Contours1', canvas)
 
 # contours traversal
 for contour in range(len(contours_draw)):

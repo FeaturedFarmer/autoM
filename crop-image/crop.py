@@ -1,13 +1,3 @@
-######################################
-#
-#  Script to crop image using OpenCV
-#
-#                 by
-#
-#          Code Monkey King
-#
-######################################
-
 # Box(left=5, top=141, width=401, height=399)
 
 # packages

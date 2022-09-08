@@ -1,14 +1,3 @@
-#####################################
-#
-#  Simple python script to extract 
-#        edges from images
-#
-#               by
-#
-#        Code Monkey King
-#
-#####################################
-
 # packages
 import cv2
 
