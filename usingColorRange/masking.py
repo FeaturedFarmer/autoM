@@ -7,7 +7,7 @@ high_color = np.array([10, 255, 255])
 #25,52,72(Lowgreen)
 #102,255,255(Higreen)
 
-# lower1red ([0, 100, 20])
+# lower1red ([0, 100, 20])``
 # upper1red([10, 255, 255])
 
 cap = cv2.VideoCapture(0)
@@ -18,6 +18,7 @@ while True:
     cv2.imshow('original frame', frame)
 
     hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
+    cv2.imshow('hsv', hsv)
 
     mask = cv2.inRange(hsv, low_color, high_color)
     cv2.imshow('masked frame', mask)

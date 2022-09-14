@@ -29,7 +29,7 @@ screenshot = cv2.imread('C:/Users/administrator/Desktop/DX_Projects_onGit/autoM/
 # pawn_imF = cv2.cvtColor(np.array(pawn_img), cv2.COLOR_RGB2BGR)
 
 # detect several objects on screenshot
-for pawn in pg.locateAllOnScreen('C:/Users/administrator/Desktop/DX_Projects_onGit/autoM/autoM/locate-objects/pawn.png', confidence = 0.3, grayscale = True):
+for pawn in pg.locateAllOnScreen('C:/Users/administrator/Desktop/DX_Projects_onGit/autoM/autoM/locate-objects/pawn.png', confidence = 0.4, grayscale = True):
     # draw rectangle around the object
     cv2.rectangle(
         screenshot,
