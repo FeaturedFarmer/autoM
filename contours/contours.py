@@ -46,7 +46,7 @@ for contour in range(len(contours_mask)):
     if contour != 1:
         cv2.fillConvexPoly(mask, contours_mask[contour], (0, 0, 0))
 
-    # create background
+    # create background 
     if contour != 1:
         cv2.fillConvexPoly(new_background, contours_mask[contour], (0, 0, 0))
 

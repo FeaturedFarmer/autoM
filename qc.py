@@ -222,6 +222,7 @@ if (checkval == "OK"):
         getPONOs = qc_ctrl.acell("D"+str(x)+"").value
         poNoFrow = poNosh.find(getPONOs)
         OptionMenu (measureInfo_frame,PO,*poNosh.row_values(poNoFrow.row)[1:],command = PO.trace_add('write',lambda *args: qc_ctrl.update_acell("T"+str(x)+"",PO.get()))).pack(side=LEFT, anchor=NW,pady=10)
+        
 
     #show table from qc(ex.9) sheet
     def quick_resultTable():
