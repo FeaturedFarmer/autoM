@@ -19,7 +19,7 @@ while True:
 
     hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
     cv2.imshow('hsv', hsv)
-
+    
     mask = cv2.inRange(hsv, low_color, high_color)
     cv2.imshow('masked frame', mask)
 
