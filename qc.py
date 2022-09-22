@@ -207,6 +207,7 @@ if (checkval == "OK"):
         Color = StringVar(measureInfo_frame)
         Color.set(qc_ctrl.acell("N"+str(x)+"").value)
         OptionMenu(measureInfo_frame,Color,*qc_be.col_values(27),command = Color.trace_add('write',lambda *args: qc_ctrl.update_acell("N"+str(x)+"",Color.get()))).pack(side=LEFT, anchor=NW,pady=10)
+        print(*qc_be.col_values(27))
         samples = []
         for i in range(1,1000):
             samples.append(str("S"+str(i)))
@@ -277,6 +278,7 @@ if (checkval == "OK"):
         
     #start measure button action
     def start_button():
+
         imgRes_frame.destroy()
         shutil.copyfile('1.jpg','1_.jpg')
         ret, frame = cap.read()
@@ -308,7 +310,7 @@ if (checkval == "OK"):
         styleTS = []
         styleFactory = []
 
-        for i in pomIDs[1:]:
+        for i in pomIDs[1:]:     
             recID = i+qc_reclist[17]+qc_reclist[19]
             sampleNum = qc_reclist[17]
             measurer= qc_reclist[15]
